@@ -1,21 +1,24 @@
+# Add a build timestamp to bust cache
+ARG CACHEBUST=1
+
 FROM node:20-alpine
 
 WORKDIR /app
 
-# Copier package.json et package-lock.json
+# Copy package files
 COPY package*.json ./
 
-# Installer les dépendances
-RUN npm ci --only=production
+# Install dependencies (including devDependencies for build)
+RUN npm ci
 
-# Copier le code source
+# Copy source code
 COPY . .
 
 # Build TypeScript
 RUN npm run build
 
-# Exposer le port
+# Expose port
 EXPOSE 3000
 
-# Commande de démarrage
-CMD ["npm", "start"]
+# Start server
+CMD ["node", "dist/server.js"]
