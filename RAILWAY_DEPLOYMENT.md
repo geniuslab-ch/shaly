@@ -63,8 +63,8 @@ NODE_ENV=production
 
 **Configure settings:**
 - **Root Directory:** `frontend`
-- **Build Command:** `npm install && npm run build`  
-- **Start Command:** `npx serve -s dist -l $PORT`
+- **Build Command:** `npm install && npm run build`
+- **Start Command:** `npx serve -s dist -p $PORT`
 
 **Add environment variables:**
 
