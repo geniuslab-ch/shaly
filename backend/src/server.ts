@@ -13,6 +13,7 @@ import setupRoutes from './routes/setup.routes';
 import organizationsRoutes from './routes/organizations.routes';
 import blogRoutes from './routes/blog.routes';
 import userRoutes from './routes/user.routes';
+import stripeRoutes from './routes/stripe.routes';
 import { errorHandler } from './middleware/errorHandler';
 import { startWorker } from './jobs/publishPost.worker';
 
@@ -40,6 +41,9 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Compression
 app.use(compression());
+
+// Stripe webhook MUST be before express.json() (needs raw body)
+app.use('/api/stripe', stripeRoutes);
 
 // Routes
 app.use('/auth', authRoutes);
