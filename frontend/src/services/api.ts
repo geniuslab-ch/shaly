@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 // Create axios instance
-const api = axios.create({
+const axiosInstance = axios.create({
     baseURL: API_URL,
     headers: {
         'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ const api = axios.create({
 });
 
 // Add token to requests
-api.interceptors.request.use((config) => {
+axiosInstance.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
@@ -28,45 +28,54 @@ export interface Post {
     status: 'pending' | 'published' | 'failed';
     linkedin_post_id?: string;
     error_message?: string;
-    created_at?: string;
-    published_at?: string;
+    organization_id?: string;
+    publish_as?: 'person' | 'organization';
 }
 
-export interface User {
-    id: number;
-    name: string;
-    email: string;
-}
+export const api = {
+    /**
+     * Login with LinkedIn
+     */
+    loginWithLinkedIn: () => {
+        window.location.href = `${API_URL}/auth/linkedin`;
+    },
 
-export const apiService = {
-    // Auth
-    async checkAuthStatus(): Promise<{ authenticated: boolean; user?: User }> {
-        const response = await api.get('/auth/status');
+    /**
+     * Handle OAuth callback
+     */
+    handleCallback: async (code: string) => {
+        const response = await axiosInstance.get(`/auth/linkedin/callback?code=${code}`);
         return response.data;
     },
 
-    // Posts
-    async publishNow(content: string): Promise<{ success: boolean; post: Post }> {
-        const response = await api.post('/api/posts/publish-now', { content });
+    /**
+     * Get user's posts
+     */
+    getPosts: async (): Promise<Post[]> => {
+        const response = await axiosInstance.get('/api/posts');
         return response.data;
     },
 
-    async schedulePost(content: string, scheduledFor: string): Promise<{ success: boolean; post: Post }> {
-        const response = await api.post('/api/posts/schedule', { content, scheduledFor });
+    /**
+     * Delete a post
+     */
+    deletePost: async (postId: number) => {
+        await axiosInstance.delete(`/api/posts/${postId}`);
+    },
+
+    /**
+     * Create a new post
+     */
+    createPost: async (postData: Omit<Post, 'id' | 'status'>) => {
+        const response = await axiosInstance.post('/api/posts', postData);
         return response.data;
     },
 
-    async getPosts(): Promise<{ posts: Post[] }> {
-        const response = await api.get('/api/posts');
+    /**
+     * Get organizations (pages) the user can administer
+     */
+    getOrganizations: async () => {
+        const response = await axiosInstance.get('/api/organizations');
         return response.data;
     },
-
-    async deletePost(id: number): Promise<{ success: boolean }> {
-        const response = await api.delete(`/api/posts/${id}`);
-        return response.data;
-    },
-};
-
-export const getLinkedInAuthUrl = () => {
-    return `${API_URL}/auth/linkedin`;
 };

@@ -21,8 +21,8 @@ router.get('/setup-database', async (req, res) => {
           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
 
-      -- Create posts table
-      CREATE TABLE IF NOT EXISTS posts (
+      -- Create scheduled_posts table (correct name used by models)
+      CREATE TABLE IF NOT EXISTS scheduled_posts (
           id SERIAL PRIMARY KEY,
           user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
           content TEXT NOT NULL,
@@ -30,16 +30,20 @@ router.get('/setup-database', async (req, res) => {
           status VARCHAR(50) NOT NULL DEFAULT 'pending',
           linkedin_post_id VARCHAR(255),
           error_message TEXT,
+          organization_id VARCHAR(255),
+          publish_as VARCHAR(50) DEFAULT 'person',
           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          published_at TIMESTAMP
       );
 
       -- Create indexes
       CREATE INDEX IF NOT EXISTS idx_users_linkedin_id ON users(linkedin_id);
       CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
-      CREATE INDEX IF NOT EXISTS idx_posts_user_id ON posts(user_id);
-      CREATE INDEX IF NOT EXISTS idx_posts_status ON posts(status);
-      CREATE INDEX IF NOT EXISTS idx_posts_scheduled_for ON posts(scheduled_for);
+      CREATE INDEX IF NOT EXISTS idx_scheduled_posts_user_id ON scheduled_posts(user_id);
+      CREATE INDEX IF NOT EXISTS idx_scheduled_posts_status ON scheduled_posts(status);
+      CREATE INDEX IF NOT EXISTS idx_scheduled_posts_scheduled_for ON scheduled_posts(scheduled_for);
+      CREATE INDEX IF NOT EXISTS idx_scheduled_posts_organization_id ON scheduled_posts(organization_id);
     `;
 
         // Execute schema
