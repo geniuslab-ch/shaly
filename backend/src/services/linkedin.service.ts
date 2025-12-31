@@ -82,12 +82,56 @@ export const linkedInService = {
     },
 
     /**
-     * Publish a post to LinkedIn
+     * Get organizations (pages) that the user can administer
      */
-    async publishPost(accessToken: string, linkedinId: string, content: string): Promise<string> {
+    async getOrganizations(accessToken: string): Promise<any[]> {
         try {
+            const response = await axios.get(
+                'https://api.linkedin.com/v2/organizationAcls?q=roleAssignee&role=ADMINISTRATOR&projection=(elements*(organizationalTarget~(localizedName,vanityName,id)))',
+                {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`,
+                        'X-Restli-Protocol-Version': '2.0.0',
+                    },
+                }
+            );
+
+            // Extract organization details
+            const organizations = response.data.elements?.map((item: any) => {
+                const org = item['organizationalTarget~'];
+                return {
+                    id: org.id,
+                    name: org.localizedName,
+                    vanityName: org.vanityName,
+                    urn: `urn:li:organization:${org.id}`,
+                };
+            }) || [];
+
+            return organizations;
+        } catch (error: any) {
+            console.error('Error fetching organizations:', error.response?.data || error.message);
+            // Return empty array if user has no organizations or API fails
+            return [];
+        }
+    },
+
+    /**
+     * Publish a post to LinkedIn (profile or organization)
+     */
+    async publishPost(
+        accessToken: string,
+        linkedinId: string,
+        content: string,
+        organizationId?: string
+    ): Promise<string> {
+        try {
+            // Use organization URN if provided, otherwise use person URN
+            const author = organizationId
+                ? organizationId // Already a full URN from frontend
+                : `urn:li:person:${linkedinId}`;
+
             const postData = {
-                author: `urn:li:person:${linkedinId}`,
+                author,
                 lifecycleState: 'PUBLISHED',
                 specificContent: {
                     'com.linkedin.ugc.ShareContent': {

@@ -10,6 +10,7 @@ import compression from 'compression';
 import authRoutes from './routes/auth.routes';
 import postsRoutes from './routes/posts.routes';
 import setupRoutes from './routes/setup.routes';
+import organizationsRoutes from './routes/organizations.routes';
 import { errorHandler } from './middleware/errorHandler';
 import { startWorker } from './jobs/publishPost.worker';
 
@@ -41,6 +42,7 @@ app.use(compression());
 // Routes
 app.use('/auth', authRoutes);
 app.use('/api', postsRoutes);
+app.use('/api/organizations', organizationsRoutes);
 app.use('/setup', setupRoutes); // TEMPORARY - for database initialization
 
 // Health check
