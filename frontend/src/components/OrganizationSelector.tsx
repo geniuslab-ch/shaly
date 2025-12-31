@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { api } from '../services/api';
+import { apiService } from '../services/api';
 
 interface Organization {
     id: string;
@@ -23,7 +23,7 @@ export function OrganizationSelector({ onSelect, selectedOrganization }: Organiz
 
     const loadOrganizations = async () => {
         try {
-            const data = await api.getOrganizations();
+            const data = await apiService.getOrganizations();
             setOrganizations(data.organizations || []);
         } catch (error) {
             console.error('Failed to load organizations:', error);
