@@ -42,7 +42,10 @@ export const authController = {
             let user = await userModel.findByLinkedInId(profile.id);
 
             if (!user) {
-                // Create new user
+                // Create new user with 14-day trial
+                const now = new Date();
+                const trialEnd = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000); // 14 days
+
                 user = await userModel.create({
                     linkedin_id: profile.id,
                     access_token: tokenData.access_token,
@@ -50,6 +53,9 @@ export const authController = {
                     token_expires_at: new Date(Date.now() + tokenData.expires_in * 1000),
                     email: profile.email,
                     name: `${profile.firstName} ${profile.lastName}`.trim(),
+                    trial_start_date: now,
+                    trial_end_date: trialEnd,
+                    subscription_status: 'trial'
                 });
             } else {
                 // Update existing user's tokens

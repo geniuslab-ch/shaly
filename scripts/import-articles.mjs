@@ -162,7 +162,174 @@ Mais sur le long terme, c'est :
 Découvrez comment [Shaly](/) peut transformer votre stratégie avec une planification intelligente.`,
         author: "Équipe Shaly",
         published: true,
-        published_at: new Date('2025-01-14T09:00:00Z').toISOString()
+        published_at: new Date('2025-01-14T09:00:00Z').toISOString() // 14 janvier 2025
+    },
+    {
+        title: "Publier sur LinkedIn tous les jours : mythe ou vraie stratégie ?",
+        slug: "publier-linkedin-tous-les-jours",
+        excerpt: "Publier tous les jours sur LinkedIn est souvent présenté comme la clé du succès. Mais est-ce vraiment une bonne stratégie ou un mythe difficile à tenir ?",
+        content: `# Publier sur LinkedIn tous les jours : mythe ou vraie stratégie ?
+
+## Introduction
+
+Publier tous les jours sur LinkedIn est souvent présenté comme la clé du succès pour gagner en visibilité.
+
+Mais est-ce réellement une bonne stratégie… ou un mythe marketing difficile à tenir sur la durée ?
+
+Entre la peur de spammer, le manque d'inspiration et le temps nécessaire pour rédiger, beaucoup hésitent.
+
+Dans cet article, on va répondre clairement à la question :
+
+👉 **Faut-il vraiment publier sur LinkedIn tous les jours pour obtenir des résultats ?**
+
+---
+
+## Pourquoi LinkedIn valorise la régularité (mais pas l'excès)
+
+L'algorithme LinkedIn favorise avant tout :
+- la **régularité**
+- l'**engagement réel**
+- la **qualité du contenu**
+
+Contrairement à une idée reçue, LinkedIn ne récompense pas mécaniquement ceux qui publient le plus, mais **ceux qui publient de façon cohérente et constante**.
+
+Publier tous les jours peut fonctionner… à certaines conditions.
+
+---
+
+## Publier tous les jours sur LinkedIn : les avantages
+
+### 1. Plus de visibilité à court terme
+
+Plus vous publiez, plus vous multipliez les occasions :
+- d'apparaître dans le fil d'actualité
+- d'être commenté ou partagé
+- d'être identifié comme actif
+
+**C'est particulièrement utile :**
+- au lancement d'un compte
+- lors d'un repositionnement
+- pour tester différents formats
+
+### 2. Accélération de l'apprentissage
+
+Publier souvent permet de :
+- tester rapidement ce qui fonctionne
+- comprendre ce qui génère de l'engagement
+- affiner son ton et ses sujets
+
+👉 C'est un excellent outil d'apprentissage, surtout au début.
+
+---
+
+## Les limites (et risques) d'une publication quotidienne
+
+### 1. Le risque de baisse de qualité
+
+Publier tous les jours sans préparation mène souvent à :
+- des posts répétitifs
+- des idées peu approfondies
+- une baisse d'engagement
+
+**LinkedIn pénalise indirectement les contenus peu engageants.**
+
+### 2. L'épuisement créatif
+
+Trouver 7 idées pertinentes par semaine, les rédiger et les publier manuellement devient vite :
+- chronophage
+- mentalement fatigant
+- difficile à tenir sur le long terme
+
+**Résultat : abandon total… ce qui est pire que publier moins souvent.**
+
+### 3. Un faux sentiment d'obligation
+
+Beaucoup de créateurs se forcent à publier quotidiennement alors que :
+- leur audience n'attend pas forcément autant
+- leur stratégie n'est pas claire
+- leurs objectifs ne sont pas définis
+
+---
+
+## Alors, quelle est la fréquence idéale sur LinkedIn ?
+
+👉 **La réponse honnête : cela dépend**
+
+Mais dans la majorité des cas :
+
+| Objectif | Fréquence recommandée |
+|----------|----------------------|
+| Débuter | 2 à 3 posts / semaine |
+| Développer une audience | 3 à 4 posts / semaine |
+| Créateurs avancés | 4 à 5 posts / semaine |
+| Publication quotidienne | Optionnelle, pas obligatoire |
+
+👉 **La régularité bat toujours la fréquence.**
+
+---
+
+## Publier moins, mais mieux : la vraie stratégie gagnante
+
+Une bonne stratégie LinkedIn repose sur :
+- un rythme tenable
+- un contenu préparé à l'avance
+- une vision long terme
+
+**Publier 3 fois par semaine pendant 6 mois aura bien plus d'impact que publier tous les jours pendant 2 semaines… puis disparaître.**
+
+---
+
+## Comment rester régulier sans publier tous les jours manuellement
+
+La clé, ce n'est pas de publier plus, mais de **mieux s'organiser**.
+
+Les créateurs et équipes performantes :
+- planifient leurs posts à l'avance
+- regroupent la création de contenu
+- publient automatiquement aux meilleurs moments
+
+👉 C'est exactement ce qui permet de maintenir une présence régulière sans pression quotidienne.
+
+_Découvrez comment [publier sans perdre du temps](/blog/publier-manuellement-linkedin)_
+
+---
+
+## Le rôle de la planification dans une stratégie LinkedIn durable
+
+La planification permet de :
+- garder une cohérence éditoriale
+- éviter les périodes d'inactivité
+- tester différents formats sereinement
+- publier même quand vous êtes occupé
+
+**C'est l'approche la plus saine pour LinkedIn**, surtout si vous visez la croissance sur plusieurs mois.
+
+_Pour en savoir plus : [Comment automatiser sa présence sur LinkedIn](/blog/automatiser-linkedin)_
+
+---
+
+## Conclusion : mythe ou vraie stratégie ?
+
+✔️ Publier tous les jours sur LinkedIn **peut fonctionner**  
+❌ Ce n'est **ni obligatoire, ni adapté à tout le monde**
+
+👉 **La vraie stratégie gagnante, c'est :**
+- une fréquence réaliste
+- une régularité constante
+- une organisation solide
+
+Si vous pouvez publier tous les jours sans sacrifier la qualité, foncez.
+
+Sinon, **mieux vaut publier moins… mais mieux**.
+
+---
+
+## Vous voulez rester régulier sur LinkedIn sans y penser chaque jour ?
+
+La [planification intelligente avec Shaly](/) vous permet de publier au bon rythme, sans stress.`,
+        author: "Équipe Shaly",
+        published: true,
+        published_at: new Date('2025-01-21T09:00:00Z').toISOString() // 21 janvier 2025
     }
 ];
 

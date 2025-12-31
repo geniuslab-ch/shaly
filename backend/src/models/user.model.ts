@@ -34,10 +34,13 @@ export const userModel = {
     token_expires_at: Date;
     email: string;
     name: string;
+    trial_start_date?: Date;
+    trial_end_date?: Date;
+    subscription_status?: string;
   }): Promise<User> {
     const result = await pool.query(
-      `INSERT INTO users (linkedin_id, access_token, refresh_token, token_expires_at, email, name)
-       VALUES ($1, $2, $3, $4, $5, $6)
+      `INSERT INTO users (linkedin_id, access_token, refresh_token, token_expires_at, email, name, trial_start_date, trial_end_date, subscription_status)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
        RETURNING *`,
       [
         userData.linkedin_id,
@@ -46,6 +49,9 @@ export const userModel = {
         userData.token_expires_at,
         userData.email,
         userData.name,
+        userData.trial_start_date || null,
+        userData.trial_end_date || null,
+        userData.subscription_status || 'trial',
       ]
     );
     return result.rows[0];
@@ -79,7 +85,7 @@ export const userModel = {
       [userId]
     );
     if (!result.rows[0]) return true;
-    
+
     const expiresAt = new Date(result.rows[0].token_expires_at);
     return expiresAt <= new Date();
   },
