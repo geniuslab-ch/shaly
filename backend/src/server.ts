@@ -9,6 +9,7 @@ import morgan from 'morgan';
 import compression from 'compression';
 import authRoutes from './routes/auth.routes';
 import postsRoutes from './routes/posts.routes';
+import setupRoutes from './routes/setup.routes';
 import { errorHandler } from './middleware/errorHandler';
 import { startWorker } from './jobs/publishPost.worker';
 
@@ -40,6 +41,7 @@ app.use(compression());
 // Routes
 app.use('/auth', authRoutes);
 app.use('/api', postsRoutes);
+app.use('/setup', setupRoutes); // TEMPORARY - for database initialization
 
 // Health check
 app.get('/health', (req, res) => {
