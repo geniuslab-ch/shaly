@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import BlogList from './pages/Blog/BlogList';
+import BlogPost from './pages/Blog/BlogPost';
 import LegalMentions from './pages/Legal/Mentions';
 import LegalTerms from './pages/Legal/Terms';
 import LegalPrivacy from './pages/Legal/Privacy';
@@ -84,6 +86,10 @@ function App() {
                 <Route path="/legal/mentions" element={<LegalMentions />} />
                 <Route path="/legal/terms" element={<LegalTerms />} />
                 <Route path="/legal/privacy" element={<LegalPrivacy />} />
+
+                {/* Blog routes */}
+                <Route path="/blog" element={<BlogList />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
 
                 {/* Protected routes */}
                 <Route path="/dashboard" element={
