@@ -21,18 +21,16 @@ export default function LegalMentions() {
                     <div className="space-y-8 text-gray-300">
                         <section>
                             <h2 className="text-2xl font-semibold mb-4 text-white">Éditeur du site</h2>
-                            <p className="mb-2"><strong>Raison sociale :</strong> Shaly SA</p>
-                            <p className="mb-2"><strong>Forme juridique :</strong> Société Anonyme</p>
-                            <p className="mb-2"><strong>Capital social :</strong> 100'000 CHF</p>
+                            <p className="mb-2"><strong>Raison sociale :</strong> Shaly</p>
+                            <p className="mb-2"><strong>Forme juridique :</strong> Raison individuelle</p>
                             <p className="mb-2"><strong>Siège social :</strong> Rue de la Gare 12, 1003 Lausanne, Suisse</p>
-                            <p className="mb-2"><strong>Numéro d'identification (IDE) :</strong> CHE-XXX.XXX.XXX</p>
-                            <p className="mb-2"><strong>Email :</strong> contact@shaly.io</p>
+                            <p className="mb-2"><strong>Email :</strong> contact@shaly.ch</p>
                         </section>
 
                         <section>
                             <h2 className="text-2xl font-semibold mb-4 text-white">Directeur de la publication</h2>
                             <p>Noura Scharer</p>
-                            <p>Email : noura@shaly.io</p>
+                            <p>Email : contact@shaly.ch</p>
                         </section>
 
                         <section>
@@ -65,8 +63,7 @@ export default function LegalMentions() {
                         <section>
                             <h2 className="text-2xl font-semibold mb-4 text-white">Contact</h2>
                             <p className="mb-2">Pour toute question concernant les mentions légales :</p>
-                            <p className="mb-2"><strong>Email :</strong> legal@shaly.io</p>
-                            <p><strong>Téléphone :</strong> +41 XX XXX XX XX</p>
+                            <p className="mb-2"><strong>Email :</strong> contact@shaly.ch</p>
                         </section>
 
                         <section className="pt-8 border-t border-white/10">

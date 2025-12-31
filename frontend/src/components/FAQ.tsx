@@ -16,15 +16,11 @@ const faqs = [
     },
     {
         question: 'Que se passe-t-il après l\'essai gratuit ?',
-        answer: 'Après 14 jours, vous choisissez de passer à un plan payant (15 CHF/mois ou 132 CHF/an) ou de rester en version gratuite limitée. Aucun engagement, annulation à tout moment.',
+        answer: 'Après 14 jours, vous devez passer à un plan payant (15 CHF/mois ou 132 CHF/an) pour continuer à utiliser Shaly. Aucun engagement, annulation à tout moment.',
     },
     {
         question: 'Puis-je annuler mon abonnement ?',
         answer: 'Oui, vous pouvez annuler à tout moment depuis votre tableau de bord. L\'annulation prend effet immédiatement et vous ne serez plus facturé.',
-    },
-    {
-        question: 'Y a-t-il une limite de posts ?',
-        answer: 'Avec un abonnement payant, vous avez des publications illimitées. La version gratuite est limitée à 5 posts par mois.',
     },
     {
         question: 'Quels types de contenu puis-je publier ?',
@@ -95,12 +91,15 @@ export default function FAQ() {
                     <p className="text-gray-400 mb-4">
                         Vous avez une autre question ?
                     </p>
-                    <a
-                        href="mailto:support@shaly.io"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 transition-all font-semibold"
+                    <button
+                        onClick={() => {
+                            navigator.clipboard.writeText('contact@shaly.ch');
+                            alert('Email copié : contact@shaly.ch');
+                        }}
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 transition-all font-semibold cursor-pointer"
                     >
-                        Contactez-nous
-                    </a>
+                        📧 Contactez-nous
+                    </button>
                 </div>
             </div>
         </section>

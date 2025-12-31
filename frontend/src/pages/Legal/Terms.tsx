@@ -137,7 +137,7 @@ export default function LegalTerms() {
                         <section>
                             <h2 className="text-2xl font-semibold mb-4 text-white">11. Contact</h2>
                             <p className="mb-2">Pour toute question concernant ces conditions :</p>
-                            <p><strong>Email :</strong> legal@shaly.io</p>
+                            <p><strong>Email :</strong> contact@shaly.ch</p>
                         </section>
 
                         <section className="pt-8 border-t border-white/10">
