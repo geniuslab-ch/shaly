@@ -26,6 +26,7 @@ router.get('/setup-database', async (req, res) => {
           id SERIAL PRIMARY KEY,
           user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
           content TEXT NOT NULL,
+          media_urls TEXT[],
           scheduled_for TIMESTAMP NOT NULL,
           status VARCHAR(50) NOT NULL DEFAULT 'pending',
           linkedin_post_id VARCHAR(255),
