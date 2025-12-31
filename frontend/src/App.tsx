@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Landing from './pages/Landing';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import { apiService, User } from './services/api';
@@ -16,7 +18,7 @@ function App() {
 
         if (token) {
             localStorage.setItem('token', token);
-            window.history.replaceState({}, document.title, '/');
+            window.history.replaceState({}, document.title, '/dashboard');
             checkAuth();
         } else if (error) {
             console.error('OAuth error:', error);
@@ -67,13 +69,22 @@ function App() {
     }
 
     return (
-        <>
-            {isAuthenticated && user ? (
-                <Dashboard user={user} onLogout={handleLogout} />
-            ) : (
-                <Login />
-            )}
-        </>
+        <BrowserRouter>
+            <Routes>
+                {/* Public routes */}
+                <Route path="/" element={<Landing />} />
+                <Route path="/login" element={
+                    isAuthenticated ? <Navigate to="/dashboard" /> : <Login />
+                } />
+
+                {/* Protected routes */}
+                <Route path="/dashboard" element={
+                    isAuthenticated && user ?
+                        <Dashboard user={user} onLogout={handleLogout} /> :
+                        <Navigate to="/login" />
+                } />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
