@@ -2,12 +2,8 @@ import express from 'express';
 import pool from '../config/database';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 const router = express.Router();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // TEMPORARY - Remove after running once!
 router.get('/setup-database', async (req, res) => {
