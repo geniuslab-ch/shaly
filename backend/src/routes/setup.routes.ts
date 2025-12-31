@@ -192,4 +192,32 @@ router.get('/migrate-blog', async (req, res) => {
     }
 });
 
+// TEMPORARY - Import blog article without authentication
+router.post('/import-article', async (req, res) => {
+    try {
+        const { title, slug, excerpt, content, cover_image, author, published, published_at } = req.body;
+
+        const result = await pool.query(
+            `INSERT INTO blog_posts (title, slug, excerpt, content, cover_image, author, published, published_at)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+       RETURNING *`,
+            [title, slug, excerpt, content, cover_image, author || 'Équipe Shaly', published, published_at]
+        );
+
+        res.status(201).json({
+            success: true,
+            post: result.rows[0]
+        });
+    } catch (error: any) {
+        console.error('Error importing blog article:', error);
+        if (error.code === '23505') {
+            return res.status(400).json({ error: 'Slug already exists' });
+        }
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
 export default router;
