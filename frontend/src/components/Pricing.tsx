@@ -13,6 +13,7 @@ const plans = [
             'Sans carte bancaire',
         ],
         cta: 'Commencer Gratuitement',
+        ctaLink: '/login',
         popular: false,
     },
     {
@@ -29,6 +30,7 @@ const plans = [
             'Analytics (bientôt)',
         ],
         cta: 'S\'abonner Maintenant',
+        ctaLink: 'https://buy.stripe.com/6oU14n6rreqAgu04mD1Nu00',
         popular: false,
     },
     {
@@ -45,17 +47,12 @@ const plans = [
             'Consultation stratégie LinkedIn',
         ],
         cta: 'S\'abonner Maintenant',
+        ctaLink: 'https://buy.stripe.com/28E00j033gyIelScT91Nu01',
         popular: true,
     },
 ];
 
 export default function Pricing() {
-    const handleSubscribe = (planName: string) => {
-        // TODO: Implement Stripe checkout
-        console.log('Subscribe to:', planName);
-        alert('Intégration Stripe à venir !');
-    };
-
     return (
         <section id="pricing" className="py-24 bg-gradient-to-b from-gray-800 to-gray-900">
             <div className="container mx-auto px-4">
@@ -75,8 +72,8 @@ export default function Pricing() {
                         <div
                             key={index}
                             className={`relative glass rounded-2xl p-8 ${plan.popular
-                                    ? 'border-2 border-linkedin-500 transform scale-105'
-                                    : 'border border-white/10'
+                                ? 'border-2 border-linkedin-500 transform scale-105'
+                                : 'border border-white/10'
                                 } transition-all duration-300 hover:transform hover:scale-105`}
                         >
                             {/* Popular Badge */}
@@ -108,15 +105,18 @@ export default function Pricing() {
                             </div>
 
                             {/* CTA */}
-                            <button
-                                onClick={() => handleSubscribe(plan.name)}
-                                className={`w-full py-3 rounded-xl font-semibold mb-8 transition-all duration-300 ${plan.popular
+                            {/* CTA */}
+                            <a
+                                href={plan.ctaLink}
+                                target={plan.ctaLink.startsWith('http') ? '_blank' : undefined}
+                                rel={plan.ctaLink.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                className={`block text-center w-full py-3 rounded-xl font-semibold mb-8 transition-all duration-300 ${plan.popular
                                         ? 'gradient-primary hover:shadow-lg hover:shadow-linkedin-500/50'
                                         : 'border border-white/10 hover:bg-white/5'
                                     }`}
                             >
                                 {plan.cta}
-                            </button>
+                            </a>
 
                             {/* Features */}
                             <ul className="space-y-4">
