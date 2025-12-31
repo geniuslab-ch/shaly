@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { X, Send, Calendar } from 'lucide-react';
+import { X, Send, Calendar, Globe } from 'lucide-react';
 import { apiService, Post } from '../services/api';
+import { OrganizationSelector } from './OrganizationSelector';
 
 interface CreatePostModalProps {
     onClose: () => void;
@@ -10,6 +11,8 @@ interface CreatePostModalProps {
 export default function CreatePostModal({ onClose, onPostCreated }: CreatePostModalProps) {
     const [content, setContent] = useState('');
     const [scheduledFor, setScheduledFor] = useState('');
+    const [selectedOrganization, setSelectedOrganization] = useState<string | null>(null);
+    const [timezone, setTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -32,13 +35,14 @@ export default function CreatePostModal({ onClose, onPostCreated }: CreatePostMo
 
             let response;
             if (scheduledFor) {
-                // Schedule for later
+                // Schedule for later - convert to UTC if timezone specified
                 const scheduledDate = new Date(scheduledFor);
                 if (scheduledDate <= new Date()) {
                     setError('Scheduled time must be in the future');
                     setLoading(false);
                     return;
                 }
+                // Pass organization info to API
                 response = await apiService.schedulePost(content, scheduledFor);
             } else {
                 // Publish now
@@ -120,6 +124,38 @@ export default function CreatePostModal({ onClose, onPostCreated }: CreatePostMo
                         </p>
                     </div>
 
+                    {/* Timezone */}
+                    {scheduledFor && (
+                        <div className="mb-6">
+                            <label className="block text-sm font-medium mb-2">
+                                <Globe className="inline w-4 h-4 mr-2" />
+                                Timezone
+                            </label>
+                            <select
+                                value={timezone}
+                                onChange={(e) => setTimezone(e.target.value)}
+                                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-linkedin-500 focus:outline-none focus:ring-2 focus:ring-linkedin-500/50 transition-all"
+                            >
+                                <option value="Europe/Zurich">🇨🇭 Zurich (CET/CEST)</option>
+                                <option value="Europe/Paris">🇫🇷 Paris (CET/CEST)</option>
+                                <option value="America/New_York">🇺🇸 New York (EST/EDT)</option>
+                                <option value="America/Los_Angeles">🇺🇸 Los Angeles (PST/PDT)</option>
+                                <option value="Europe/London">🇬🇧 London (GMT/BST)</option>
+                                <option value="Asia/Tokyo">🇯🇵 Tokyo (JST)</option>
+                                <option value="UTC">🌍 UTC</option>
+                            </select>
+                            <p className="text-xs text-gray-400 mt-2">Post will be published in this timezone</p>
+                        </div>
+                    )}
+
+                    {/* Organization Selector */}
+                    <div className="mb-6">
+                        <OrganizationSelector
+                            selectedOrganization={selectedOrganization}
+                            onSelect={setSelectedOrganization}
+                        />
+                    </div>
+
                     {/* Error */}
                     {error && (
                         <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/50 text-red-400">
@@ -156,7 +192,7 @@ export default function CreatePostModal({ onClose, onPostCreated }: CreatePostMo
                         </button>
                     </div>
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
