@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import LegalMentions from './pages/Legal/Mentions';
+import LegalTerms from './pages/Legal/Terms';
+import LegalPrivacy from './pages/Legal/Privacy';
 import { apiService, User } from './services/api';
 
 function App() {
@@ -76,6 +79,11 @@ function App() {
                 <Route path="/login" element={
                     isAuthenticated ? <Navigate to="/dashboard" /> : <Login />
                 } />
+
+                {/* Legal routes */}
+                <Route path="/legal/mentions" element={<LegalMentions />} />
+                <Route path="/legal/terms" element={<LegalTerms />} />
+                <Route path="/legal/privacy" element={<LegalPrivacy />} />
 
                 {/* Protected routes */}
                 <Route path="/dashboard" element={

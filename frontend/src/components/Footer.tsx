@@ -6,7 +6,7 @@ export default function Footer() {
     return (
         <footer className="bg-gray-900 border-t border-white/10">
             <div className="container mx-auto px-4 py-12">
-                <div className="grid md:grid-cols-4 gap-8">
+                <div className="grid md:grid-cols-3 gap-8">
                     {/* Brand */}
                     <div className="md:col-span-1">
                         <h3 className="text-2xl font-bold gradient-text mb-4">Shaly</h3>
@@ -62,28 +62,6 @@ export default function Footer() {
                             <li>
                                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
                                     Changelog
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Company */}
-                    <div>
-                        <h4 className="font-semibold mb-4">Entreprise</h4>
-                        <ul className="space-y-2">
-                            <li>
-                                <a href="#about" className="text-gray-400 hover:text-white transition-colors">
-                                    À propos
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mailto:contact@shaly.io" className="text-gray-400 hover:text-white transition-colors">
-                                    Contact
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mailto:career@shaly.io" className="text-gray-400 hover:text-white transition-colors">
-                                    Carrières
                                 </a>
                             </li>
                         </ul>
