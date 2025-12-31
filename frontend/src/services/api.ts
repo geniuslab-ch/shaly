@@ -46,13 +46,20 @@ export const apiService = {
     },
 
     // Posts
-    async publishNow(content: string): Promise<{ success: boolean; post: Post }> {
-        const response = await api.post('/api/posts/publish-now', { content });
+    async publishNow(content: string, organizationUrn?: string | null): Promise<{ success: boolean; post: Post }> {
+        const response = await api.post('/api/posts/publish-now', {
+            content,
+            organizationUrn: organizationUrn || undefined
+        });
         return response.data;
     },
 
-    async schedulePost(content: string, scheduledFor: string): Promise<{ success: boolean; post: Post }> {
-        const response = await api.post('/api/posts/schedule', { content, scheduledFor });
+    async schedulePost(content: string, scheduledFor: string, organizationUrn?: string | null): Promise<{ success: boolean; post: Post }> {
+        const response = await api.post('/api/posts/schedule', {
+            content,
+            scheduledFor,
+            organizationUrn: organizationUrn || undefined
+        });
         return response.data;
     },
 
@@ -69,6 +76,17 @@ export const apiService = {
     // Organizations
     async getOrganizations(): Promise<{ organizations: any[] }> {
         const response = await api.get('/api/organizations');
+        return response.data;
+    },
+
+    // User
+    async getTrialStatus(): Promise<{
+        subscription_status: string;
+        trial_end_date: string | null;
+        days_remaining: number;
+        is_expired: boolean;
+    }> {
+        const response = await api.get('/api/user/trial-status');
         return response.data;
     },
 };

@@ -3,6 +3,9 @@ import { Plus, LogOut, RefreshCw } from 'lucide-react';
 import { apiService, User, Post } from '../services/api';
 import CreatePostModal from './CreatePostModal';
 import PostCard from './PostCard';
+import TrialBanner from './TrialBanner';
+import PaymentRequiredModal from './PaymentRequiredModal';
+import { useTrialStatus } from '../hooks/useTrialStatus';
 
 interface DashboardProps {
     user: User;
@@ -14,6 +17,7 @@ export default function Dashboard({ user, onLogout }: DashboardProps) {
     const [loading, setLoading] = useState(true);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [refreshing, setRefreshing] = useState(false);
+    const { trialDaysRemaining, isExpired, loading: trialLoading } = useTrialStatus();
 
     useEffect(() => {
         loadPosts();
@@ -85,6 +89,11 @@ export default function Dashboard({ user, onLogout }: DashboardProps) {
 
             {/* Main Content */}
             <main className="container mx-auto px-4 py-8">
+                {/* Trial Banner */}
+                {!trialLoading && trialDaysRemaining > 0 && trialDaysRemaining <= 14 && (
+                    <TrialBanner daysLeft={trialDaysRemaining} />
+                )}
+
                 {/* Action Bar */}
                 <div className="flex items-center justify-between mb-8">
                     <div>
@@ -142,6 +151,11 @@ export default function Dashboard({ user, onLogout }: DashboardProps) {
                     onClose={() => setShowCreateModal(false)}
                     onPostCreated={handlePostCreated}
                 />
+            )}
+
+            {/* Payment Required Modal for expired trial */}
+            {!trialLoading && isExpired && (
+                <PaymentRequiredModal />
             )}
         </div>
     );

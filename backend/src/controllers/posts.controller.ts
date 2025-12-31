@@ -11,7 +11,7 @@ export const postsController = {
      * Publish a post immediately
      */
     publishNow: asyncHandler(async (req: AuthRequest, res: Response) => {
-        const { content } = req.body;
+        const { content, organizationUrn } = req.body;
         const userId = req.user!.id;
 
         if (!content || content.trim().length === 0) {
@@ -41,7 +41,8 @@ export const postsController = {
             const linkedinPostId = await linkedInService.publishPost(
                 user.access_token,
                 user.linkedin_id,
-                content
+                content,
+                organizationUrn || undefined
             );
 
             // Update post status
@@ -80,7 +81,7 @@ export const postsController = {
      * Schedule a post for later
      */
     schedulePost: asyncHandler(async (req: AuthRequest, res: Response) => {
-        const { content, scheduledFor } = req.body;
+        const { content, scheduledFor, organizationUrn } = req.body;
         const userId = req.user!.id;
 
         if (!content || content.trim().length === 0) {

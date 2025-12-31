@@ -43,10 +43,10 @@ export default function CreatePostModal({ onClose, onPostCreated }: CreatePostMo
                     return;
                 }
                 // Pass organization info to API
-                response = await apiService.schedulePost(content, scheduledFor);
+                response = await apiService.schedulePost(content, scheduledFor, selectedOrganization);
             } else {
-                // Publish now
-                response = await apiService.publishNow(content);
+                // Publish now with organization
+                response = await apiService.publishNow(content, selectedOrganization);
             }
 
             onPostCreated(response.post);
