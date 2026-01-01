@@ -76,6 +76,13 @@ export default function Dashboard({ user, onLogout }: DashboardProps) {
                                 <RefreshCw className={`w-5 h-5 ${refreshing ? 'animate-spin' : ''}`} />
                             </button>
                             <a
+                                href="/settings/profile"
+                                className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors"
+                                title="Paramètres du profil"
+                            >
+                                ⏰ Profil
+                            </a>
+                            <a
                                 href="/settings/accounts"
                                 className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors"
                                 title="Gérer les comptes"
