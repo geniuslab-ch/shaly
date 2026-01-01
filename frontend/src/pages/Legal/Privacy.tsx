@@ -167,7 +167,7 @@ export default function LegalPrivacy() {
                             <h2 className="text-2xl font-semibold mb-4 text-white">11. Contact DPO</h2>
                             <p className="mb-2">Délégué à la Protection des Données (DPO) :</p>
                             <p className="mb-2"><strong>Email :</strong> contact@shaly.ch</p>
-                            <p className="mb-2"><strong>Adresse :</strong> Shaly, Rue de la Gare 12, 1003 Lausanne, Suisse</p>
+                            <p className="mb-2"><strong>Adresse :</strong> Shaly, Rue des Cygnes 33b, 1400 Yverdon-les-Bains, Suisse</p>
                             <p className="mt-4">
                                 <strong>Autorité de contrôle suisse :</strong> Préposé fédéral à la protection des données et à la transparence (PFPDT)
                             </p>

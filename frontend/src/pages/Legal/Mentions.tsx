@@ -23,7 +23,7 @@ export default function LegalMentions() {
                             <h2 className="text-2xl font-semibold mb-4 text-white">Éditeur du site</h2>
                             <p className="mb-2"><strong>Raison sociale :</strong> Shaly</p>
                             <p className="mb-2"><strong>Forme juridique :</strong> Raison individuelle</p>
-                            <p className="mb-2"><strong>Siège social :</strong> Rue de la Gare 12, 1003 Lausanne, Suisse</p>
+                            <p className="mb-2"><strong>Siège social :</strong> Rue des Cygnes 33b, 1400 Yverdon-les-Bains, Suisse</p>
                             <p className="mb-2"><strong>Email :</strong> contact@shaly.ch</p>
                         </section>
 
