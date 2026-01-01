@@ -9,19 +9,23 @@ export const postModel = {
         user_id: number;
         content: string;
         media_urls?: string[];
+        media_type?: string;
+        article_url?: string;
         scheduled_for: Date;
         status?: string;
         organization_id?: string;
         publish_as?: 'person' | 'organization';
     }): Promise<ScheduledPost> {
         const result = await pool.query(
-            `INSERT INTO scheduled_posts (user_id, content, media_urls, scheduled_for, status, organization_id, publish_as)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)
+            `INSERT INTO scheduled_posts (user_id, content, media_urls, media_type, article_url, scheduled_for, status, organization_id, publish_as)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
        RETURNING *`,
             [
                 postData.user_id,
                 postData.content,
                 postData.media_urls || [],
+                postData.media_type || 'text',
+                postData.article_url || null,
                 postData.scheduled_for,
                 postData.status || 'pending',
                 postData.organization_id || null,

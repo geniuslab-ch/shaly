@@ -11,7 +11,7 @@ export const postsController = {
      * Publish a post immediately
      */
     publishNow: asyncHandler(async (req: AuthRequest, res: Response) => {
-        const { content, organizationUrn } = req.body;
+        const { content, organizationUrn, mediaUrls, mediaType, articleUrl } = req.body;
         const userId = req.user!.id;
 
         if (!content || content.trim().length === 0) {
@@ -35,15 +35,39 @@ export const postsController = {
                 content,
                 scheduled_for: new Date(), // Immediate
                 status: 'pending',
+                media_urls: mediaUrls || null,
+                media_type: mediaType || 'text',
+                article_url: articleUrl || null,
             });
 
-            // Publish to LinkedIn immediately
-            const linkedinPostId = await linkedInService.publishPost(
-                user.access_token,
-                user.linkedin_id,
-                content,
-                organizationUrn || undefined
-            );
+            // Publish to LinkedIn based on media type
+            let linkedinPostId;
+
+            if (mediaType === 'image' && mediaUrls && mediaUrls.length > 0) {
+                linkedinPostId = await linkedInService.publishPostWithMedia(
+                    user.access_token,
+                    user.linkedin_id,
+                    content,
+                    mediaUrls,
+                    organizationUrn
+                );
+            } else if (mediaType === 'article' && articleUrl) {
+                linkedinPostId = await linkedInService.publishPostWithArticle(
+                    user.access_token,
+                    user.linkedin_id,
+                    content,
+                    articleUrl,
+                    organizationUrn
+                );
+            } else {
+                // Text only post
+                linkedinPostId = await linkedInService.publishPost(
+                    user.access_token,
+                    user.linkedin_id,
+                    content,
+                    organizationUrn || undefined
+                );
+            }
 
             // Update post status
             const updatedPost = await postModel.updateStatus(
