@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /login
+Disallow: /settings/
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://shaly.ch/sitemap.xml
