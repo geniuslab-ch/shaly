@@ -16,6 +16,7 @@ import userRoutes from './routes/user.routes';
 import stripeRoutes from './routes/stripe.routes';
 import linkedAccountsRoutes from './routes/linkedAccounts.routes';
 import mediaRoutes from './routes/media.routes';
+import sitemapRoutes from './routes/sitemap.routes';
 import { errorHandler } from './middleware/errorHandler';
 import { startWorker } from './jobs/publishPost.worker';
 
@@ -44,8 +45,11 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Compression
 app.use(compression());
 
-// Stripe webhook MUST be before express.json() (needs raw body)
+// Stripe webhook (MUST be before express.json middleware)
 app.use('/api/stripe', stripeRoutes);
+
+// Sitemap (public, no auth required)
+app.use('/', sitemapRoutes);
 
 // Routes
 app.use('/auth', authRoutes);
