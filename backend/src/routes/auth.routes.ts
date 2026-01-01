@@ -6,7 +6,7 @@ const router = Router();
 
 // OAuth routes
 router.get('/linkedin', authController.initiateAuth);
-router.get('/linkedin/callback', authController.handleCallback);
+router.get('/callback', authController.handleCallback);
 
 // Protected routes
 router.get('/status', authenticateToken, authController.checkStatus);
