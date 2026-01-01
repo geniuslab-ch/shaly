@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Settings, Plus, Trash2, CheckCircle } from 'lucide-react';
-import apiService from '../../services/api';
+import { apiService } from '../../services/api';
 
 interface LinkedAccount {
     id: number;
