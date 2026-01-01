@@ -7,10 +7,7 @@ export default function Footer() {
                 <div className="grid md:grid-cols-3 gap-8">
                     {/* Brand */}
                     <div className="md:col-span-1">
-                        <div className="flex items-center gap-3 mb-4">
-                            <img src="/shaly-logo.png" alt="Shaly Logo" className="w-10 h-10" />
-                            <h3 className="text-2xl font-bold gradient-text">Shaly</h3>
-                        </div>
+                        <img src="/shaly-logo.png" alt="Shaly Logo" className="w-16 h-16 mb-4" />
                         <p className="text-gray-400">
                             Automatisez votre présence LinkedIn avec intelligence.
                         </p>
