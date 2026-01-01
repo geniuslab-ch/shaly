@@ -17,9 +17,28 @@ export default function Hero() {
             </div>
 
             <div className="container mx-auto px-4 py-20 relative z-10">
-                {/* Header with Logo */}
+                {/* Header with Logo and Navigation */}
                 <div className="flex items-center justify-between mb-12">
                     <img src="/shaly-logo.png" alt="Shaly Logo" className="w-16 h-16" />
+
+                    {/* Navigation Menu */}
+                    <nav className="hidden md:flex items-center gap-8">
+                        <a href="#features" className="text-gray-300 hover:text-white transition-colors font-medium">
+                            Fonctionnalités
+                        </a>
+                        <a href="#pricing" className="text-gray-300 hover:text-white transition-colors font-medium">
+                            Tarifs
+                        </a>
+                        <a href="/blog" className="text-gray-300 hover:text-white transition-colors font-medium">
+                            Blog
+                        </a>
+                        <a
+                            href="/login"
+                            className="px-6 py-2 rounded-full gradient-primary hover:shadow-lg hover:shadow-linkedin-500/50 transition-all font-semibold"
+                        >
+                            Connexion
+                        </a>
+                    </nav>
                 </div>
 
                 <div className="max-w-5xl mx-auto text-center">
