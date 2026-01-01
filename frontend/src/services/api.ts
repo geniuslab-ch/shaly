@@ -89,6 +89,22 @@ export const apiService = {
         const response = await api.get('/api/user/trial-status');
         return response.data;
     },
+
+    // Linked Accounts
+    async getLinkedAccounts(): Promise<{ accounts: any[] }> {
+        const response = await api.get('/api/linked-accounts');
+        return response.data;
+    },
+
+    async initiateAccountLink(): Promise<{ authUrl: string }> {
+        const response = await api.get('/api/linked-accounts/connect/initiate');
+        return response.data;
+    },
+
+    async removeLinkedAccount(id: number): Promise<{ success: boolean }> {
+        const response = await api.delete(`/api/linked-accounts/${id}`);
+        return response.data;
+    },
 };
 
 export const getLinkedInAuthUrl = () => {
