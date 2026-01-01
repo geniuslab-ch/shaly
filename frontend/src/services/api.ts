@@ -90,6 +90,16 @@ export const apiService = {
         return response.data;
     },
 
+    async getUserProfile(): Promise<{ user: { id: number; email: string; name: string; timezone: string } }> {
+        const response = await api.get('/api/user/profile');
+        return response.data;
+    },
+
+    async updateTimezone(timezone: string): Promise<{ success: boolean; timezone: string }> {
+        const response = await api.patch('/api/user/timezone', { timezone });
+        return response.data;
+    },
+
     // Linked Accounts
     async getLinkedAccounts(): Promise<{ accounts: any[] }> {
         const response = await api.get('/api/linked-accounts');

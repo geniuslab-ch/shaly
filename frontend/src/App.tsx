@@ -9,6 +9,7 @@ import LegalMentions from './pages/Legal/Mentions';
 import LegalTerms from './pages/Legal/Terms';
 import LegalPrivacy from './pages/Legal/Privacy';
 import LinkedAccounts from './pages/Settings/LinkedAccounts';
+import ProfileSettings from './pages/Settings/Profile';
 import { apiService, User } from './services/api';
 
 function App() {
@@ -100,6 +101,9 @@ function App() {
                 } />
                 <Route path="/settings/accounts" element={
                     isAuthenticated ? <LinkedAccounts /> : <Navigate to="/login" />
+                } />
+                <Route path="/settings/profile" element={
+                    isAuthenticated ? <ProfileSettings /> : <Navigate to="/login" />
                 } />
             </Routes>
         </BrowserRouter>
