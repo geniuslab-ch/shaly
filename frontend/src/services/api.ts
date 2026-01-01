@@ -46,19 +46,38 @@ export const apiService = {
     },
 
     // Posts
-    async publishNow(content: string, organizationUrn?: string | null): Promise<{ success: boolean; post: Post }> {
+    async publishNow(
+        content: string,
+        organizationUrn?: string | null,
+        mediaUrls?: string[],
+        mediaType?: string,
+        articleUrl?: string
+    ): Promise<{ success: boolean; post: Post }> {
         const response = await api.post('/api/posts/publish-now', {
             content,
-            organizationUrn: organizationUrn || undefined
+            organizationUrn: organizationUrn || undefined,
+            mediaUrls,
+            mediaType,
+            articleUrl
         });
         return response.data;
     },
 
-    async schedulePost(content: string, scheduledFor: string, organizationUrn?: string | null): Promise<{ success: boolean; post: Post }> {
+    async schedulePost(
+        content: string,
+        scheduledFor: string,
+        organizationUrn?: string | null,
+        mediaUrls?: string[],
+        mediaType?: string,
+        articleUrl?: string
+    ): Promise<{ success: boolean; post: Post }> {
         const response = await api.post('/api/posts/schedule', {
             content,
             scheduledFor,
-            organizationUrn: organizationUrn || undefined
+            organizationUrn: organizationUrn || undefined,
+            mediaUrls,
+            mediaType,
+            articleUrl
         });
         return response.data;
     },
