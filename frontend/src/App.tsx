@@ -8,6 +8,7 @@ import BlogPost from './pages/Blog/BlogPost';
 import LegalMentions from './pages/Legal/Mentions';
 import LegalTerms from './pages/Legal/Terms';
 import LegalPrivacy from './pages/Legal/Privacy';
+import LinkedAccounts from './pages/Settings/LinkedAccounts';
 import { apiService, User } from './services/api';
 
 function App() {
@@ -96,6 +97,9 @@ function App() {
                     isAuthenticated && user ?
                         <Dashboard user={user} onLogout={handleLogout} /> :
                         <Navigate to="/login" />
+                } />
+                <Route path="/settings/accounts" element={
+                    isAuthenticated ? <LinkedAccounts /> : <Navigate to="/login" />
                 } />
             </Routes>
         </BrowserRouter>
