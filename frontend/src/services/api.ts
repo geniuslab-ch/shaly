@@ -115,6 +115,21 @@ export const apiService = {
         const response = await api.delete(`/api/linked-accounts/${id}`);
         return response.data;
     },
+
+    // Media
+    async uploadMedia(file: File): Promise<{ success: boolean; url: string; type: string; publicId: string }> {
+        const formData = new FormData();
+        formData.append('file', file);
+        const response = await api.post('/api/media/upload', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        return response.data;
+    },
+
+    async deleteMedia(publicId: string): Promise<{ success: boolean }> {
+        const response = await api.delete(`/api/media/${publicId}`);
+        return response.data;
+    },
 };
 
 export const getLinkedInAuthUrl = () => {
