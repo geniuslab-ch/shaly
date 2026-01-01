@@ -15,6 +15,7 @@ import blogRoutes from './routes/blog.routes';
 import userRoutes from './routes/user.routes';
 import stripeRoutes from './routes/stripe.routes';
 import linkedAccountsRoutes from './routes/linkedAccounts.routes';
+import mediaRoutes from './routes/media.routes';
 import { errorHandler } from './middleware/errorHandler';
 import { startWorker } from './jobs/publishPost.worker';
 
@@ -52,6 +53,7 @@ app.use('/api', postsRoutes);
 app.use('/api/organizations', organizationsRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/linked-accounts', linkedAccountsRoutes);
+app.use('/api/media', mediaRoutes);
 app.use('/api/blog', blogRoutes);
 app.use('/setup', setupRoutes); // TEMPORARY - for database initialization
 
